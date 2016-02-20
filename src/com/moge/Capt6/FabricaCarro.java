@@ -6,15 +6,12 @@ public class FabricaCarro {
 	private static Funcionario[] funcionarios = new Funcionario[FabricaCarro.limiteFuncionario];
 	private static int adicionado = 0;
 	
-	FabricaCarro(){
-		
+	protected FabricaCarro(){
 	}
 	
-	
-	private FabricaCarro getInstance(){
+	public static FabricaCarro getInstance(){
 		if(instance == null){
 			instance = new FabricaCarro();
-			
 		}
 		
 		return instance;
@@ -32,7 +29,7 @@ public class FabricaCarro {
 	
 	private boolean canInsert(){
 		
-		if(this.getTotalAdicionado() == FabricaCarro.getLimiteFuncionario()){
+		if(FabricaCarro.getTotalAdicionado() == FabricaCarro.getLimiteFuncionario()){
 			return false;
 		}
 		
@@ -44,8 +41,8 @@ public class FabricaCarro {
 		FabricaCarro.adicionado++;
 	}
 	
-	public int getTotalAdicionado(){
-		return this.adicionado;
+	public static int getTotalAdicionado(){
+		return FabricaCarro.adicionado;
 	}
 	
 	private static int getLimiteFuncionario(){
@@ -53,17 +50,22 @@ public class FabricaCarro {
 	}
 	
 	public void mostraFuncionarios(){
-		for(Funcionario f: this.funcionarios){
-			System.out.println(f.getNome());
+		for(int i=0; i < FabricaCarro.getTotalAdicionado(); i++){
+			System.out.println(this.getFuncionario(i).getNome());
 		}
 	}
 	
 	public void mostraFuncionarios(int i){
 		int limite = FabricaCarro.getLimiteFuncionario();
+		int adicionados = FabricaCarro.getTotalAdicionado();
+		System.out.println(limite);
 		if(i >= limite){
 			
 			System.out.println("Indice informado é maior que o permitido! Limite: " + limite);
-		} else {
+		} else if (i > adicionados -1){
+			
+			System.out.println("Indice informado é maior que o permitido! Limite: " + (adicionados-1));
+		}else {
 			
 			System.out.println(this.getFuncionario(i).getNome());
 		}

@@ -19,6 +19,6 @@ public class TestaFabrica {
 		
 		fb2.mostraFuncionarios();
 		
-		//fabrica.mostraFuncionarios(1);
+		fabrica.mostraFuncionarios(2);
 	}
 }
